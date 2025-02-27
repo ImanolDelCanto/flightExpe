@@ -8,6 +8,7 @@ import { Experience } from "./experience"
 import { Contact } from "./contact"
 import { ScrollToTop } from "./scroll-to-top"
 import { Toaster } from "sonner"
+import { Gallery } from "./gallery"
 
 export default function Main() {
   return (
@@ -30,6 +31,9 @@ export default function Main() {
         </section>
         <section id="experience" className="w-full pb-16 md:pb-24 px-4 sm:px-8">
           <Experience />
+        </section>
+        <section id="contact" className="w-full py-16 md:py-24 bg-muted">
+          <Gallery/>
         </section>
         <section id="contact" className="w-full py-16 md:py-24 bg-muted">
           <Contact />
