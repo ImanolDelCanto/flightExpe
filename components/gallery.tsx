@@ -8,7 +8,7 @@ export function Gallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1,                
   });
 
   // Imágenes de ejemplo de Unsplash (aviones y experiencias de vuelo)
