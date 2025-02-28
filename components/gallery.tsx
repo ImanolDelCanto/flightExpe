@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight, Users } from 'lucide-react';
+import Image from 'next/image';
 
 export function Gallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -93,7 +94,9 @@ export function Gallery() {
                   transition={{ duration: 0.6 }}
                   className="absolute inset-0"
                 >
-                  <img 
+                  <Image 
+                    height={1000}
+                    width={1000} 
                     src={image.url} 
                     alt={`Cliente ${index + 1}`} 
                     className="w-full h-full object-cover"
