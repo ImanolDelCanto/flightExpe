@@ -80,7 +80,7 @@ export function Gallery() {
         </motion.p>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Carrusel */}
+          {/* Carrusel */}     
           <div className="overflow-hidden rounded-xl shadow-2xl">
             <div className="relative aspect-video">
               {images.map((image, index) => (
