@@ -19,7 +19,7 @@ import {
   }
   
   export const ContactFormEmail: React.FC<ContactFormEmailProps> = ({
-    name,
+    name, 
     email,
     message,
   }) => {
