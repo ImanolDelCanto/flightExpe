@@ -11,27 +11,10 @@ export function Gallery() {
     threshold: 0.1,                
   });
 
-  // Imágenes de ejemplo de Unsplash (aviones y experiencias de vuelo)
   const images = [
     {
-      url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e",
-      caption: "Juan y María - Primera experiencia de vuelo"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1559628233-100c798642d4",
-      caption: "Carlos - Piloto por un día"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1503560683205-acf61ac68a3b",
-      caption: "Familia Rodríguez - Vuelo panorámico"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1521406177435-1e61f2965e1e",
-      caption: "Laura - Vuelo bautismo"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1534481016308-0fca71578ae5",
-      caption: "Grupo empresarial - Experiencia de equipo"
+      url: "/media/delfina.jpg",
+      caption: "Delfina - Piloto por un día"
     }
   ];
 
@@ -43,7 +26,6 @@ export function Gallery() {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
-  // Auto-avance del carrusel
   useEffect(() => {
     const interval = setInterval(() => {
       if (inView) {
@@ -96,10 +78,10 @@ export function Gallery() {
                 >
                   <Image 
                     height={1000}
-                    width={1000} 
+                    width={1000}  
                     src={image.url} 
                     alt={`Cliente ${index + 1}`} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
                     <p className="text-white text-lg font-medium">{image.caption}</p>

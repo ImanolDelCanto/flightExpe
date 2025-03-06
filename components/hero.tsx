@@ -15,7 +15,7 @@ export function Hero() {
           transition={{ duration: 0.6 }}
           className="text-5xl md:text-7xl font-bold mb-6"
         >
-        Experiencias Aereas
+        Experiencias Aéreas
         </motion.h1>
         <motion.p
           initial={{ y: 50, opacity: 0 }}
