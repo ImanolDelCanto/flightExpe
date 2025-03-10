@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { ChevronLeft, ChevronRight, Users } from 'lucide-react';
-import Image from 'next/image';
+"use client"
+
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { ChevronLeft, ChevronRight, Users } from "lucide-react"
+import Image from "next/image"
 
 export function Gallery() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,                
-  });
+    threshold: 0.1,
+  })
 
   const images = [
     {
       url: "/media/delfina.jpg",
-      caption: "Delfina - Piloto por un día"
-    }
-  ];
+      caption: "Delfina - Piloto por un día",
+    },
+  ]
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-  };
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+  }
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-  };
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (inView) {
-        nextSlide();
+        nextSlide()
       }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [inView]);
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [inView])
 
   return (
     <motion.div
@@ -44,14 +46,12 @@ export function Gallery() {
       className="py-16 bg-white dark:bg-gray-800"
       id="gallery"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-center mb-12">
           <Users className="w-8 h-8 text-blue-600 mr-3" />
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">
-            Galería de Clientes
-          </h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">Galería de Clientes</h2>
         </div>
-        
+
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
@@ -61,26 +61,26 @@ export function Gallery() {
           Descubre las experiencias inolvidables de nuestros clientes y únete a nuestra comunidad de amantes del vuelo
         </motion.p>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Carrusel */}     
+        <div className="relative max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto">
+          {/* Carrusel */}
           <div className="overflow-hidden rounded-xl shadow-2xl">
-            <div className="relative aspect-video">
+            <div className="relative aspect-video md:aspect-[16/9] lg:aspect-[16/8]">
               {images.map((image, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
-                  animate={{ 
+                  animate={{
                     opacity: index === currentIndex ? 1 : 0,
-                    zIndex: index === currentIndex ? 10 : 0 
+                    zIndex: index === currentIndex ? 10 : 0,
                   }}
                   transition={{ duration: 0.6 }}
                   className="absolute inset-0"
                 >
-                  <Image 
+                  <Image
                     height={1000}
-                    width={1000}  
-                    src={image.url} 
-                    alt={`Cliente ${index + 1}`} 
+                    width={1000}
+                    src={image.url || "/placeholder.svg"}
+                    alt={`Cliente ${index + 1}`}
                     className="w-full h-full object-contain"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
@@ -119,7 +119,7 @@ export function Gallery() {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'
+                  index === currentIndex ? "bg-blue-600" : "bg-gray-300 dark:bg-gray-600"
                 }`}
                 aria-label={`Ir a la imagen ${index + 1}`}
               />
@@ -144,5 +144,6 @@ export function Gallery() {
         </motion.div>
       </div>
     </motion.div>
-  );
+  )
 }
+

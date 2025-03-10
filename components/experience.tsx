@@ -24,7 +24,7 @@ export function Experience() {
         <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
           ¿Qué incluyen las experiencias aéreas?
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={inView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
@@ -44,7 +44,7 @@ export function Experience() {
               width={1000}
               src="/media/Avioneta.jpg"
               alt="Vuelo Bautismo"
-              className="rounded-lg shadow-lg w-full h-[400px] object-cover relative z-10 transition-all duration-300"
+              className="rounded-lg shadow-lg w-full h-[300px] md:h-[350px] lg:h-[400px] object-cover relative z-10 transition-all duration-300"
             />
 
             {/* Decorative elements that appear on hover */}
@@ -82,7 +82,7 @@ export function Experience() {
             </motion.div>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {[
               {
                 title: "Recepción y Bienvenida",

@@ -1,54 +1,55 @@
-"use client";
+"use client"
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { Phone, Mail, Instagram, MapPin } from "lucide-react";
-import Link from "next/link";
+import type React from "react"
+import { useState, type ChangeEvent, type FormEvent } from "react"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { Phone, Mail, Instagram, MapPin } from "lucide-react"
+import Link from "next/link"
 
 export function Contact() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  });
+  })
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  });
+  })
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setSuccess(null);
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+    setSuccess(null)
 
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      });
+      })
 
-      const result = await response.json();
+      const result = await response.json()
 
-      if (!response.ok) throw new Error(result.error || "Error al enviar el mensaje");
+      if (!response.ok) throw new Error(result.error || "Error al enviar el mensaje")
 
-      setSuccess("¡Mensaje enviado con éxito!");
-      setFormData({ name: "", email: "", message: "" }); 
+      setSuccess("¡Mensaje enviado con éxito!")
+      setFormData({ name: "", email: "", message: "" })
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <motion.div
@@ -59,11 +60,9 @@ export function Contact() {
       className="py-16 bg-white dark:bg-gray-800"
       id="contact"
     >
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-          Contacta con Nosotros
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Contacta con Nosotros</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
           {/* Información de contacto */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -102,7 +101,7 @@ export function Contact() {
             initial={{ x: 50, opacity: 0 }}
             animate={inView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-4 bg-gray-50 dark:bg-gray-900 p-6 rounded-lg shadow-lg"
+            className="space-y-4 bg-gray-50 dark:bg-gray-900 p-4 md:p-6 lg:p-8 rounded-lg shadow-lg"
             onSubmit={handleSubmit}
           >
             <InputField
@@ -144,9 +143,8 @@ export function Contact() {
         </div>
       </div>
     </motion.div>
-  );
+  )
 }
-
 
 const ContactItem = ({
   icon,
@@ -154,10 +152,10 @@ const ContactItem = ({
   link,
   text,
 }: {
-  icon: React.ReactNode;
-  title: string;
-  link: string;
-  text: string;
+  icon: React.ReactNode
+  title: string
+  link: string
+  text: string
 }) => (
   <div className="flex items-center gap-4">
     <div className="bg-blue-100 dark:bg-blue-900 p-3 rounded-full">{icon}</div>
@@ -168,7 +166,7 @@ const ContactItem = ({
       </Link>
     </div>
   </div>
-);
+)
 
 // Componente reutilizable para los inputs
 const InputField = ({
@@ -179,12 +177,12 @@ const InputField = ({
   onChange,
   placeholder,
 }: {
-  label: string;
-  type: string;
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  label: string
+  type: string
+  name: string
+  value: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  placeholder: string
 }) => (
   <div>
     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{label}</label>
@@ -197,7 +195,7 @@ const InputField = ({
       placeholder={placeholder}
     />
   </div>
-);
+)
 
 // Componente reutilizable para el textarea
 const TextareaField = ({
@@ -207,11 +205,11 @@ const TextareaField = ({
   onChange,
   placeholder,
 }: {
-  label: string;
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  placeholder: string;
+  label: string
+  name: string
+  value: string
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  placeholder: string
 }) => (
   <div>
     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{label}</label>
@@ -224,4 +222,5 @@ const TextareaField = ({
       placeholder={placeholder}
     />
   </div>
-);
+)
+

@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import Image from 'next/image';
+"use client"
+
+import type React from "react"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 interface NavLinkProps {
-  href: string;
-  children: React.ReactNode;
+  href: string
+  children: React.ReactNode
 }
 interface MobileNavLinkProps {
-  href: string;
-  onClick: () => void;
-  children: React.ReactNode;
+  href: string
+  onClick: () => void
+  children: React.ReactNode
 }
 
 function NavLink({ href, children }: NavLinkProps) {
@@ -23,7 +26,7 @@ function NavLink({ href, children }: NavLinkProps) {
     >
       {children}
     </motion.a>
-  );
+  )
 }
 
 function MobileNavLink({ href, onClick, children }: MobileNavLinkProps) {
@@ -37,35 +40,35 @@ function MobileNavLink({ href, onClick, children }: MobileNavLinkProps) {
     >
       {children}
     </motion.a>
-  );
+  )
 }
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+      setIsScrolled(window.scrollY > 50)
+    }
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 ">
         <div className="flex items-center justify-between">
-          <Image src="/media/icono.png" alt="logo" className="h-32 w-auto" width={1000} height={1000}/>
+          <Image src="/media/icono.png" alt="logo" className="h-32 w-auto" width={1000} height={1000} />
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             <NavLink href="#services">Servicios</NavLink>
             <NavLink href="#experience">Experiencia</NavLink>
             <NavLink href="#contact">Contacto</NavLink>
@@ -94,7 +97,7 @@ export function Navbar() {
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden mt-4"
             >
@@ -123,5 +126,6 @@ export function Navbar() {
         </AnimatePresence>
       </div>
     </motion.nav>
-  );
+  )
 }
+

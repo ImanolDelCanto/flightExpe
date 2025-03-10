@@ -215,9 +215,9 @@ export function About() {
       </div>
 
       {/* Main content with ref for animation trigger */}
-      <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 py-16">
-        <div>
-          <h2 className="text-3xl font-bold mb-10">¿Qué es un Vuelo Bautismo?</h2>
+      <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12 md:py-16 lg:py-20">
+        <div className="px-4 md:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-10">¿Qué es un Vuelo Bautismo?</h2>
           <p className="text-muted-foreground mb-6">
             Son Experiencias diseñadas para aquellas personas que, sin conocer el mundo de la aviación, desean
             adentrarse en el y vivir la emoción de volar. Durante estos vuelos, los participantes aprenden los
@@ -229,8 +229,8 @@ export function About() {
             regalo perfecto para sorprender a alguien especial.
           </p>
         </div>
-        <div>
-          <h2 className="text-3xl font-bold mb-10">Beneficios del Vuelo Bautismo</h2>
+        <div className="px-4 md:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-10">Beneficios del Vuelo Bautismo</h2>
           <ul className="space-y-4">
             <li className="flex items-center gap-4">
               <CheckIcon className="w-6 h-6 text-primary" />

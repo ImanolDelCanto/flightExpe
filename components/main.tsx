@@ -9,15 +9,17 @@ import { Contact } from "./contact"
 import { ScrollToTop } from "./scroll-to-top"
 import { Toaster } from "sonner"
 import { Gallery } from "./gallery"
+import { FAQ } from "./faq"
+import { WhatsAppButton } from "./whatsapp-button"
 
 export default function Main() {
   return (
     <div className="w-full min-h-screen bg-background text-foreground">
       <Toaster position="top-center" />
-      <header >
+      <header>
         <Navbar />
       </header>
-      <main >
+      <main>
         <section id="hero" className="relative w-full">
           <Hero />
         </section>
@@ -32,26 +34,28 @@ export default function Main() {
         <section id="experience" className="w-full pb-16 md:pb-24 px-4 sm:px-8">
           <Experience />
         </section>
-        <section id="contact" className="w-full py-16 md:py-24 bg-muted">
-          <Gallery/>
+        <section id="gallery" className="w-full py-16 md:py-24 bg-muted">
+          <Gallery />
+        </section>
+        <section id="faq" className="w-full py-16 md:py-24">
+          <FAQ />
         </section>
         <section id="contact" className="w-full py-16 md:py-24 bg-muted">
           <Contact />
         </section>
       </main>
       <footer className="w-full bg-primary text-primary-foreground py-6 px-6 md:px-12">
-        <div className="container flex flex-col mx-auto md:flex items-center justify-between gap-4">
-          <p className="text-sm text-center">
+        <div className="container flex flex-col mx-auto md:flex-row md:items-center md:justify-between gap-4">
+          <p className="text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} Vuelo Bautismo. Todos los derechos reservados.
           </p>
           <div className="flex justify-center gap-4 mt-4 md:mt-0">
-          <p className="text-xs text-center">
-            Desarrollado por GretSoft
-          </p>
+            <p className="text-xs">Desarrollado por GretSoft</p>
           </div>
         </div>
       </footer>
       <ScrollToTop />
+      <WhatsAppButton />
     </div>
   )
 }
