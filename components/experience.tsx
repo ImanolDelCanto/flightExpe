@@ -181,21 +181,6 @@ export function Experience() {
                       <Check className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white text-lg">
-                        Posibilidad de volar con acompañante
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 mt-1">
-                        Comparte la experiencia con alguien especial (según disponibilidad).
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex gap-4 items-start">
-                    <div className="bg-blue-100 dark:bg-blue-800/50 p-2 rounded-full">
-                      <Check className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div>
                       <h3 className="font-bold text-gray-900 dark:text-white text-lg">Boarding pass con código QR</h3>
                       <p className="text-gray-600 dark:text-gray-300 mt-1">
                         Recibe un pase especial que simula un ticket de avión con tu nombre, fecha, hora y tipo de
