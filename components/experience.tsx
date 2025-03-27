@@ -20,7 +20,7 @@ export function Experience() {
       className="py-16 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
       id="experience"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 overflow-hidden">
         <div className="relative mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white relative z-10">
             ✈️ ¿Qué incluyen nuestras experiencias aéreas?

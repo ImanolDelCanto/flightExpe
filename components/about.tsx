@@ -28,7 +28,7 @@ export function About() {
   return (
     <div className="relative">
       {/* Animation container - positioned completely above the content */}
-      <div className="absolute inset-x-0 -top-20 h-40 pointer-events-none overflow-hidden">
+      <div className="absolute inset-x-0 -top-20 h-40 pointer-events-none overflow-hidden max-w-full">
         <AnimatePresence>
           {animationStarted && (
             <>
@@ -61,7 +61,7 @@ export function About() {
 
                 {/* Airplane trails */}
                 <motion.div
-                  className="absolute top-1/2 right-12 h-1 bg-gradient-to-l from-transparent to-primary/40 rounded-full"
+                  className="absolute top-1/2 right-12 h-1 bg-gradient-to-l from-transparent to-primary/40 rounded-full max-w-[90vw]"
                   style={{ width: "150px", translateY: "-50%" }}
                   initial={{ scaleX: 0, opacity: 0 }}
                   animate={{ scaleX: 1, opacity: 0.8 }}
@@ -75,7 +75,7 @@ export function About() {
                 />
 
                 <motion.div
-                  className="absolute top-1/2 right-12 h-0.5 bg-gradient-to-l from-transparent to-primary/30 rounded-full"
+                  className="absolute top-1/2 right-12 h-0.5 bg-gradient-to-l from-transparent to-primary/30 rounded-full max-w-[90vw]"
                   style={{ width: "100px", translateY: "-40%" }}
                   initial={{ scaleX: 0, opacity: 0 }}
                   animate={{ scaleX: 1, opacity: 0.6 }}
@@ -90,7 +90,7 @@ export function About() {
                 />
 
                 <motion.div
-                  className="absolute top-1/2 right-12 h-0.5 bg-gradient-to-l from-transparent to-primary/20 rounded-full"
+                  className="absolute top-1/2 right-12 h-0.5 bg-gradient-to-l from-transparent to-primary/20 rounded-full max-w-[90vw]"
                   style={{ width: "80px", translateY: "-60%" }}
                   initial={{ scaleX: 0, opacity: 0 }}
                   animate={{ scaleX: 1, opacity: 0.4 }}

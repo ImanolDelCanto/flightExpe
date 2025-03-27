@@ -14,7 +14,7 @@ import { WhatsAppButton } from "./whatsapp-button"
 
 export default function Main() {
   return (
-    <div className="w-full min-h-screen bg-background text-foreground">
+    <div className="w-full min-h-screen bg-background text-foreground overflow-x-hidden">
       <Toaster position="top-center" />
       <header>
         <Navbar />

@@ -46,7 +46,7 @@ export function Gallery() {
       className="py-16 bg-white dark:bg-gray-800"
       id="gallery"
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 overflow-hidden">
         <div className="flex items-center justify-center mb-12">
           <Users className="w-8 h-8 text-blue-600 mr-3" />
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">Galería de Clientes</h2>
