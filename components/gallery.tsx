@@ -18,6 +18,42 @@ export function Gallery() {
       url: "/media/delfina.jpg",
       caption: "Delfina - Piloto por un día",
     },
+    {
+      url: "/media/agustina.jpg",
+      caption: "Agustina - Piloto por un día",
+    },
+    {
+      url: "/media/gallery (1).jpg",
+      caption: "Vuelos",
+    },
+    {
+      url: "/media/gallery (2).jpg",
+      caption: "Vuelos",
+    },
+    {
+      url: "/media/gallery (3).jpg",
+      caption: "Vuelos",
+    },
+    {
+      url: "/media/gallery (4).jpg",
+      caption: "Vuelos",
+    },
+    {
+      url: "/media/gallery (5).jpg",
+      caption: "Vuelos",
+    },
+    {
+      url: "/media/gallery (6).jpg",
+      caption: "Vuelos",
+    },
+    {
+      url: "/media/gallery (7).jpg",
+      caption: "Vuelos",
+    },
+    {
+      url: "/media/gallery (8).jpg",
+      caption: "Vuelos",
+    },
   ]
 
   const nextSlide = () => {
