@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://experienciasaereas.com.ar/</loc>
+    <lastmod>2024-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://experienciasaereas.com.ar/media/banner1.jpg</image:loc>
+      <image:title>Experiencias Aéreas - Vuelos Bautismo</image:title>
+      <image:caption>Vive la experiencia de ser piloto por un día con nuestros vuelos bautismo en Buenos Aires</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://experienciasaereas.com.ar/media/Avioneta.jpg</image:loc>
+      <image:title>Avioneta para Vuelos Bautismo</image:title>
+      <image:caption>Aeronave utilizada para las experiencias de vuelo y vuelos panorámicos</image:caption>
+    </image:image>
+  </url>
+</urlset>

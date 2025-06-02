@@ -4,9 +4,7 @@ import ContactFormEmail from '@/emails/contact-form';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(request: Request) {
-  console.log('API route hit'); // Para depuración
-  
+export async function POST(request: Request) {  
   try {
     const { name, email, message } = await request.json();
 

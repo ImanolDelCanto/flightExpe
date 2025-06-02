@@ -11,6 +11,7 @@ import { Toaster } from "sonner"
 import { Gallery } from "./gallery"
 import { FAQ } from "./faq"
 import { WhatsAppButton } from "./whatsapp-button"
+import Link from "next/link"
 
 export default function Main() {
   return (
@@ -50,7 +51,7 @@ export default function Main() {
             &copy; {new Date().getFullYear()} Vuelo Bautismo. Todos los derechos reservados.
           </p>
           <div className="flex justify-center gap-4 mt-4 md:mt-0">
-            <p className="text-xs">Desarrollado por GretSoft</p>
+            <p className="text-xs">Desarrollado por <Link href="https://www.gretsoft.com.ar/" target="_blank" className=" hover:text-gray-300">GretSoft</Link></p>
           </div>
         </div>
       </footer>
