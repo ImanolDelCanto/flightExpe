@@ -1,8 +1,10 @@
 "use client"
 
-import { CheckIcon, Plane, Cloud, Sun } from "lucide-react"
+import { CheckIcon, Cloud, Sun } from "lucide-react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
+import Lottie from "lottie-react"
+import plane from "@/app/animations/plane.json"
 
 export function About() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -49,47 +51,6 @@ export function About() {
                 }}
               >
                 <motion.div
-                  animate={{ y: [0, -3, 0, 3, 0] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop",
-                  }}
-                >
-                  <Plane className="h-14 w-14 text-primary" strokeWidth={1.5} />
-                </motion.div>
-
-                {/* Airplane trails */}
-                <motion.div
-                  className="absolute top-1/2 right-12 h-1 bg-gradient-to-l from-transparent to-primary/40 rounded-full max-w-[90vw]"
-                  style={{ width: "150px", translateY: "-50%" }}
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{ scaleX: 1, opacity: 0.8 }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop",
-                    ease: "easeOut",
-                    repeatDelay: 0.1,
-                  }}
-                />
-
-                <motion.div
-                  className="absolute top-1/2 right-12 h-0.5 bg-gradient-to-l from-transparent to-primary/30 rounded-full max-w-[90vw]"
-                  style={{ width: "100px", translateY: "-40%" }}
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{ scaleX: 1, opacity: 0.6 }}
-                  transition={{
-                    duration: 0.6,
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop",
-                    ease: "easeOut",
-                    delay: 0.1,
-                    repeatDelay: 0.15,
-                  }}
-                />
-
-                <motion.div
                   className="absolute top-1/2 right-12 h-0.5 bg-gradient-to-l from-transparent to-primary/20 rounded-full max-w-[90vw]"
                   style={{ width: "80px", translateY: "-60%" }}
                   initial={{ scaleX: 0, opacity: 0 }}
@@ -103,6 +64,29 @@ export function About() {
                     repeatDelay: 0.2,
                   }}
                 />
+              </motion.div>
+
+              {/* Lottie Animation - positioned to move horizontally */}
+             <motion.div
+                className="absolute top-16"
+                initial={{ x: "-20%", opacity: 0, scale: 0.8 }}
+                animate={{
+                  x: "120%",
+                  opacity: 1,
+                  scale: 1,
+                  // y: [0, -12, 6, -4, 0], // Eliminar o comentar esta línea
+                }}
+                exit={{ x: "120%", opacity: 0, scale: 0.8 }}
+                transition={{
+                  duration: 6,
+                  times: [0, 0.2, 0.5, 0.8, 1],
+                  ease: "easeInOut",
+                  delay: 0.1,
+                }}
+              >
+                <div className="transform rotate-90">
+                  <Lottie animationData={plane} loop={true} className="w-28 h-28" />
+                </div>
               </motion.div>
 
               {/* Sun */}
@@ -265,4 +249,3 @@ export function About() {
     </div>
   )
 }
-

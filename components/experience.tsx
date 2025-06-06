@@ -4,6 +4,8 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Plane, Check } from "lucide-react"
+import Lottie from "lottie-react"
+import boardingPass from "@/app/animations/boardingPass.json"
 
 export function Experience() {
   const [ref, inView] = useInView({
@@ -74,6 +76,16 @@ export function Experience() {
                 >
                   Reservar ahora
                 </motion.button>
+              </div>
+              <div className="mt-8 flex justify-center">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="w-full max-w-xs"
+                >
+                  <Lottie animationData={boardingPass} loop={false} className="w-full h-auto" autoplay={true} />
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -200,4 +212,3 @@ export function Experience() {
     </motion.div>
   )
 }
-
