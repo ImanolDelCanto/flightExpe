@@ -73,7 +73,7 @@ export const metadata: Metadata = {
         type: "image/jpeg",
       },
       {
-        url: "/media/banner1.jpg",
+        url: "/media/banner1.webp",
         width: 1200,
         height: 630,
         alt: "Vuelo panorámico sobre Buenos Aires",
