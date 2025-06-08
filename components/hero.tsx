@@ -6,7 +6,7 @@ import Image from 'next/image';
 export function Hero() {
   return (
     <div className="relative h-screen">
-      <Image src="/media/banner1.jpg" height={1000} width={1000} alt="Banner" className="absolute h-full w-full object-cover" />
+      <Image src="/media/banner1.webp" height={1000} width={1000} alt="Banner" className="absolute h-full w-full object-cover" />
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
         <motion.h1

@@ -48,7 +48,7 @@ export function Experience() {
                 <Image
                   height={1000}
                   width={1000}
-                  src="/media/Avioneta.jpg"
+                  src="/media/Avioneta.webp"
                   alt="Vuelo Bautismo"
                   className="w-full h-[350px] md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
