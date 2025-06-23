@@ -52,9 +52,11 @@ function NavLink({ href, children }: NavLinkProps) {
 function MobileNavLink({ href, onClick, children }: MobileNavLinkProps) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    const elementId = href.replace('#', '')
-    smoothScrollTo(elementId)
-    onClick() // Cerrar el menú móvil
+    onClick() // Cierra el menú primero
+    setTimeout(() => {
+      const elementId = href.replace('#', '')
+      smoothScrollTo(elementId)
+    }, 100) // Espera a que el menú se cierre antes de hacer scroll
   }
 
   return (
@@ -100,7 +102,14 @@ export function Navbar() {
       <div className="container mx-auto px-4 ">
         <div className="flex items-center justify-between">
           <Link href={"/"} >
-          <Image src="/media/icono.png" alt="logo" className="h-32 w-auto" width={1000} height={1000} />
+            <Image
+              src="/media/icono.webp"
+              width={1000}
+              height={1000}
+              alt="logo"
+              className="h-32 w-auto"
+              sizes="128px"
+            />
           </Link>
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">

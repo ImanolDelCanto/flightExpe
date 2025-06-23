@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
@@ -31,31 +31,44 @@ export function Hero() {
     smoothScrollTo('about')
   }
 
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="relative h-screen">
-      <Image src="/media/banner1.webp" height={1000} width={1000} alt="Banner" className="absolute h-full w-full object-cover" />
+      <Image
+        src="/media/banner1.webp"
+        alt="Banner"
+        fill
+        className="absolute object-cover"
+        sizes="100vw"
+        priority
+      />
+
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
         <motion.h1
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { y: -40, opacity: 0 }}
+          animate={shouldReduceMotion ? {} : { y: 0, opacity: 1 }}
+          transition={{ duration: 0.4 }} // Duración reducida
           className="text-5xl md:text-7xl font-bold mb-6"
         >
-        Experiencias Aéreas
+          Experiencias Aéreas
         </motion.h1>
+
         <motion.p
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={shouldReduceMotion ? false : { y: 40, opacity: 0 }}
+          animate={shouldReduceMotion ? {} : { y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="text-xl md:text-2xl mb-8 max-w-2xl"
         >
           Descubre la libertad de volar y vive una experiencia única en el cielo
         </motion.p>
+
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          initial={shouldReduceMotion ? false : { y: 40, opacity: 0 }}
+          animate={shouldReduceMotion ? {} : { y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="flex gap-4"
         >
           <motion.a
@@ -78,15 +91,10 @@ export function Hero() {
           </motion.a>
         </motion.div>
       </div>
+
       <motion.div
-        animate={{
-          y: [0, 10, 0],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
         onClick={handleScrollDownClick}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white cursor-pointer hover:text-blue-300 transition-colors"
       >
