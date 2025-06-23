@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 interface NavLinkProps {
   href: string
@@ -16,11 +17,30 @@ interface MobileNavLinkProps {
   children: React.ReactNode
 }
 
+// Función para scroll suave
+const smoothScrollTo = (elementId: string) => {
+  const element = document.getElementById(elementId)
+  if (element) {
+    const offsetTop = element.offsetTop - 100 // Ajuste para el navbar fijo
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth'
+    })
+  }
+}
+
 function NavLink({ href, children }: NavLinkProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const elementId = href.replace('#', '')
+    smoothScrollTo(elementId)
+  }
+
   return (
     <motion.a
       href={href}
-      className={`text-gray-800 font-medium hover:text-blue-600 transition-colors`}
+      onClick={handleClick}
+      className={`text-gray-800 font-medium hover:text-blue-600 transition-colors cursor-pointer`}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
@@ -30,13 +50,20 @@ function NavLink({ href, children }: NavLinkProps) {
 }
 
 function MobileNavLink({ href, onClick, children }: MobileNavLinkProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const elementId = href.replace('#', '')
+    smoothScrollTo(elementId)
+    onClick() // Cerrar el menú móvil
+  }
+
   return (
     <motion.a
       href={href}
-      className="text-gray-800 font-medium hover:text-blue-600 transition-colors block text-center"
+      onClick={handleClick}
+      className="text-gray-800 font-medium hover:text-blue-600 transition-colors block text-center cursor-pointer"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      onClick={onClick}
     >
       {children}
     </motion.a>
@@ -56,6 +83,12 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+ const handleReservarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    smoothScrollTo('contact')
+    setIsMenuOpen(false) // Cerrar menú móvil si está abierto
+  }
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -66,15 +99,18 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 ">
         <div className="flex items-center justify-between">
+          <Link href={"/"} >
           <Image src="/media/icono.png" alt="logo" className="h-32 w-auto" width={1000} height={1000} />
+          </Link>
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <NavLink href="#services">Servicios</NavLink>
+            <NavLink href="#service">Servicios</NavLink>
             <NavLink href="#experience">Experiencia</NavLink>
             <NavLink href="#contact">Contacto</NavLink>
             <motion.a
               href="#contact"
-              className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors"
+              onClick={handleReservarClick}
+              className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -102,7 +138,7 @@ export function Navbar() {
               className="md:hidden mt-4"
             >
               <div className="flex flex-col space-y-4 bg-white rounded-lg p-4 shadow-lg">
-                <MobileNavLink href="#services" onClick={() => setIsMenuOpen(false)}>
+                <MobileNavLink href="#service" onClick={() => setIsMenuOpen(false)}>
                   Servicios
                 </MobileNavLink>
                 <MobileNavLink href="#experience" onClick={() => setIsMenuOpen(false)}>
@@ -113,10 +149,10 @@ export function Navbar() {
                 </MobileNavLink>
                 <motion.a
                   href="#contact"
-                  className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium text-center hover:bg-blue-700 transition-colors"
+                  onClick={handleReservarClick}
+                  className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium text-center hover:bg-blue-700 transition-colors cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   Reservar Ahora
                 </motion.a>
@@ -128,4 +164,3 @@ export function Navbar() {
     </motion.nav>
   )
 }
-

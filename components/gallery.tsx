@@ -17,7 +17,7 @@ interface MediaItem {
 
 export function Gallery() {
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null)
-  const [filter, setFilter] = useState<"all" | "images" | "videos">("all")
+  const [filter, ] = useState<"all" | "images" | "videos">("all")
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -25,7 +25,7 @@ export function Gallery() {
 
   const mediaItems: MediaItem[] = [
     {
-      id: 5,
+      id: 1,
       type: "image",
       url: "/media/gallery (2).webp",
       caption: "Vista panorámica desde la cabina",
@@ -39,36 +39,49 @@ export function Gallery() {
       category: "clientes",
     },
     {
+      id: 3,
+      type: "video",
+      url: "/media/videoCorto.webm",
+      caption: "Vista panorámica desde la cabina",
+      category: "vuelos",
+    },
+    {
       id: 4,
       type: "image",
-      url: "/media/gallery (1).webp",
-      caption: "Vista panorámica desde la cabina",
+      url: "/media/oscar.webp",
+      caption: "Oscar - Piloto por un día",
       category: "vuelos",
     },
     {
-      id: 7,
-      type: "image",
-      url: "/media/gallery (4).webp",
-      caption: "Vista panorámica desde la cabina",
-      category: "vuelos",
-    },
-    {
-      id: 8,
+      id: 5,
       type: "image",
       url: "/media/gallery (5).webp",
       caption: "Vista panorámica desde la cabina",
       category: "clientes",
     },
-
     {
-      id: 9,
+      id: 6,
       type: "image",
       url: "/media/gallery (7).webp",
       caption: "Vista panorámica desde la cabina",
       category: "vuelos",
     },
     {
-      id: 1,
+      id: 7,
+      type: "video",
+      url: "/media/video2.webm",
+      caption: "Vista panorámica básilica de Luján",
+      category: "vuelos",
+    },
+    {
+      id: 8,
+      type: "image",
+      url: "/media/gallery (8).webp",
+      caption: "Vista panorámica desde la cabina",
+      category: "vuelos",
+    },
+    {
+      id: 9,
       type: "image",
       url: "/media/delfina.webp",
       caption: "Delfina - Piloto por un día",
@@ -77,10 +90,25 @@ export function Gallery() {
     {
       id: 10,
       type: "image",
-      url: "/media/gallery (8).webp",
+      url: "/media/pamela.webp",
+      caption: "Pamela - Piloto por un día",
+      category: "vuelos",
+    },
+    {
+      id: 11,
+      type: "image",
+      url: "/media/gallery (4).webp",
       caption: "Vista panorámica desde la cabina",
       category: "vuelos",
     },
+    {
+      id: 12,
+      type: "image",
+      url: "/media/gallery (1).webp",
+      caption: "Vista panorámica desde la cabina",
+      category: "vuelos",
+    },
+ 
   ]
 
   const filteredItems = mediaItems.filter((item) => {
@@ -140,49 +168,6 @@ export function Gallery() {
           Descubre las experiencias inolvidables de nuestros clientes y los momentos únicos capturados en cada vuelo
         </motion.p>
 
-        {/* Filter Buttons */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex justify-center mb-8"
-        >
-          <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
-            <button
-              onClick={() => setFilter("all")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                filter === "all"
-                  ? "bg-blue-600 text-white shadow-md"
-                  : "text-gray-600 dark:text-gray-300 hover:text-blue-600"
-              }`}
-            >
-              Todo
-            </button>
-            <button
-              onClick={() => setFilter("images")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
-                filter === "images"
-                  ? "bg-blue-600 text-white shadow-md"
-                  : "text-gray-600 dark:text-gray-300 hover:text-blue-600"
-              }`}
-            >
-              <Camera className="w-4 h-4" />
-              Fotos
-            </button>
-            <button
-              onClick={() => setFilter("videos")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
-                filter === "videos"
-                  ? "bg-blue-600 text-white shadow-md"
-                  : "text-gray-600 dark:text-gray-300 hover:text-blue-600"
-              }`}
-            >
-              <Video className="w-4 h-4" />
-              Videos
-            </button>
-          </div>
-        </motion.div>
-
         {/* Masonry Grid */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
@@ -203,12 +188,25 @@ export function Gallery() {
                 onClick={() => setSelectedMedia(item)}
               >
                 <div className="relative w-full h-full">
-                  <Image
-                    src={item.type === "video" ? item.thumbnail || item.url : item.url}
-                    alt={item.caption}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                  {item.type === "video" ? (
+                    <video
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    >
+                      <source src={item.url} type="video/mp4" />
+                      <source src={item.url} type="video/webm" />
+                    </video>
+                  ) : (
+                    <Image
+                      src={item.url}
+                      alt={item.caption}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )}
 
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -329,8 +327,15 @@ export function Gallery() {
               <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                 {selectedMedia.type === "video" ? (
                   <div className="relative aspect-video">
-                    <video controls className="w-full h-full rounded-2xl" poster={selectedMedia.thumbnail} autoPlay>
+                    <video 
+                      className="w-full h-full rounded-2xl object-cover" 
+                      autoPlay 
+                      muted 
+                      loop 
+                      playsInline
+                    >
                       <source src={selectedMedia.url} type="video/mp4" />
+                      <source src={selectedMedia.url} type="video/webm" />
                       Tu navegador no soporta el elemento de video.
                     </video>
                   </div>
@@ -407,12 +412,25 @@ export function Gallery() {
                     whileHover={{ scale: item.id === selectedMedia.id ? 1.1 : 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Image
-                      src={item.type === "video" ? item.thumbnail || item.url : item.url}
-                      alt={item.caption}
-                      fill
-                      className="object-cover"
-                    />
+                    {item.type === "video" ? (
+                      <video
+                        className="w-full h-full object-cover"
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                      >
+                        <source src={item.url} type="video/mp4" />
+                        <source src={item.url} type="video/webm" />
+                      </video>
+                    ) : (
+                      <Image
+                        src={item.url}
+                        alt={item.caption}
+                        fill
+                        className="object-cover"
+                      />
+                    )}
                     {item.type === "video" && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                         <Play className="w-4 h-4 text-white" />

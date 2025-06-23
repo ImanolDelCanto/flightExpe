@@ -3,7 +3,34 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
+// Función para scroll suave
+const smoothScrollTo = (elementId: string) => {
+  const element = document.getElementById(elementId)
+  if (element) {
+    const offsetTop = element.offsetTop - 100 // Ajuste para el navbar fijo
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth'
+    })
+  }
+}
+
 export function Hero() {
+  const handleReservarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    smoothScrollTo('contact')
+  }
+
+  const handleConocerMasClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    smoothScrollTo('service')
+  }
+
+  const handleScrollDownClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    smoothScrollTo('about')
+  }
+
   return (
     <div className="relative h-screen">
       <Image src="/media/banner1.webp" height={1000} width={1000} alt="Banner" className="absolute h-full w-full object-cover" />
@@ -35,15 +62,17 @@ export function Hero() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors"
+            onClick={handleReservarClick}
+            className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors cursor-pointer"
           >
             Reservar Ahora
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="#services"
-            className="bg-white text-blue-600 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors"
+            href="#service"
+            onClick={handleConocerMasClick}
+            className="bg-white text-blue-600 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors cursor-pointer"
           >
             Conocer Más
           </motion.a>
@@ -58,7 +87,8 @@ export function Hero() {
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
+        onClick={handleScrollDownClick}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white cursor-pointer hover:text-blue-300 transition-colors"
       >
         <ChevronDown className="w-8 h-8" />
       </motion.div>
