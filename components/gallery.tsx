@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { X, Play, Users, Camera, Video, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react"
+import { Users, Play, ZoomIn } from "lucide-react"
 import Image from "next/image"
 
 interface MediaItem {
@@ -16,8 +16,7 @@ interface MediaItem {
 }
 
 export function Gallery() {
-  const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null)
-  const [filter, ] = useState<"all" | "images" | "videos">("all")
+  const [filter] = useState<"all" | "images" | "videos">("all")
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -120,26 +119,15 @@ export function Gallery() {
 
   const getGridClass = (index: number) => {
     const patterns = [
-      "md:col-span-2 md:row-span-2", // Grande
-      "md:col-span-1 md:row-span-1", // Pequeño
-      "md:col-span-1 md:row-span-2", // Alto
-      "md:col-span-2 md:row-span-1", // Ancho
-      "md:col-span-1 md:row-span-1", // Pequeño
-      "md:col-span-1 md:row-span-1", // Pequeño
+      "md:col-span-2 md:row-span-2",
+      "md:col-span-1 md:row-span-1",
+      "md:col-span-1 md:row-span-2",
+      "md:col-span-2 md:row-span-1",
+      "md:col-span-1 md:row-span-1",
+      "md:col-span-1 md:row-span-1",
     ]
     return patterns[index % patterns.length]
   }
-
-  useEffect(() => {
-    if (selectedMedia) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "unset"
-    }
-    return () => {
-      document.body.style.overflow = "unset"
-    }
-  }, [selectedMedia])
 
   return (
     <motion.div
@@ -184,8 +172,7 @@ export function Gallery() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4 }}
-                className={`relative group cursor-pointer overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${getGridClass(index)}`}
-                onClick={() => setSelectedMedia(item)}
+                className={`relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${getGridClass(index)}`}
               >
                 <div className="relative w-full h-full">
                   {item.type === "video" ? (
@@ -252,197 +239,6 @@ export function Gallery() {
           </motion.a>
         </motion.div>
       </div>
-
-      {/* Modal/Lightbox */}
-      <AnimatePresence>
-        {selectedMedia && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedMedia(null)}
-          >
-            {/* Close Button - Improved */}
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ delay: 0.2 }}
-              onClick={() => setSelectedMedia(null)}
-              className="absolute top-6 right-6 z-20 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all duration-300 p-3 rounded-full group"
-            >
-              <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
-            </motion.button>
-
-            {/* Navigation Buttons */}
-            <motion.button
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ delay: 0.3 }}
-              onClick={(e) => {
-                e.stopPropagation()
-                const currentIndex = filteredItems.findIndex((item) => item.id === selectedMedia.id)
-                const prevIndex = currentIndex > 0 ? currentIndex - 1 : filteredItems.length - 1
-                setSelectedMedia(filteredItems[prevIndex])
-              }}
-              className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all duration-300 p-3 rounded-full group"
-            >
-              <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" />
-            </motion.button>
-
-            <motion.button
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ delay: 0.3 }}
-              onClick={(e) => {
-                e.stopPropagation()
-                const currentIndex = filteredItems.findIndex((item) => item.id === selectedMedia.id)
-                const nextIndex = currentIndex < filteredItems.length - 1 ? currentIndex + 1 : 0
-                setSelectedMedia(filteredItems[nextIndex])
-              }}
-              className="absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all duration-300 p-3 rounded-full group"
-            >
-              <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-            </motion.button>
-
-            {/* Main Modal Content */}
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0, y: 100 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 50 }}
-              transition={{
-                type: "spring",
-                damping: 25,
-                stiffness: 300,
-                duration: 0.6,
-              }}
-              className="relative max-w-6xl max-h-[95vh] w-full mx-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Image Container with improved styling */}
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                {selectedMedia.type === "video" ? (
-                  <div className="relative aspect-video">
-                    <video 
-                      className="w-full h-full rounded-2xl object-cover" 
-                      autoPlay 
-                      muted 
-                      loop 
-                      playsInline
-                    >
-                      <source src={selectedMedia.url} type="video/mp4" />
-                      <source src={selectedMedia.url} type="video/webm" />
-                      Tu navegador no soporta el elemento de video.
-                    </video>
-                  </div>
-                ) : (
-                  <motion.div
-                    className="relative"
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                  >
-                    <Image
-                      src={selectedMedia.url || "/placeholder.svg"}
-                      alt={selectedMedia.caption}
-                      width={1200}
-                      height={800}
-                      className="w-full h-auto max-h-[80vh] object-contain rounded-2xl"
-                      priority
-                    />
-
-                    {/* Loading overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                  </motion.div>
-                )}
-
-                {/* Enhanced Caption */}
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 rounded-b-2xl"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-white text-xl md:text-2xl font-bold mb-2">{selectedMedia.caption}</h3>
-                      <div className="flex items-center gap-3">
-                        <span className="text-blue-400 text-sm font-medium capitalize bg-blue-500/20 px-3 py-1 rounded-full">
-                          {selectedMedia.category}
-                        </span>
-                        <span className="text-white/70 text-sm">
-                          {filteredItems.findIndex((item) => item.id === selectedMedia.id) + 1} de{" "}
-                          {filteredItems.length}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Media type badge */}
-                    <div className="bg-white/10 backdrop-blur-md p-2 rounded-full">
-                      {selectedMedia.type === "video" ? (
-                        <Video className="w-5 h-5 text-white" />
-                      ) : (
-                        <Camera className="w-5 h-5 text-white" />
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Thumbnail strip for navigation */}
-              <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="flex justify-center mt-6 gap-2 overflow-x-auto pb-2"
-              >
-                {filteredItems.map((item) => (
-                  <motion.button
-                    key={item.id}
-                    onClick={() => setSelectedMedia(item)}
-                    className={`relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden transition-all duration-300 ${
-                      item.id === selectedMedia.id
-                        ? "ring-2 ring-blue-400 scale-110"
-                        : "opacity-60 hover:opacity-100 hover:scale-105"
-                    }`}
-                    whileHover={{ scale: item.id === selectedMedia.id ? 1.1 : 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.type === "video" ? (
-                      <video
-                        className="w-full h-full object-cover"
-                        muted
-                        loop
-                        autoPlay
-                        playsInline
-                      >
-                        <source src={item.url} type="video/mp4" />
-                        <source src={item.url} type="video/webm" />
-                      </video>
-                    ) : (
-                      <Image
-                        src={item.url}
-                        alt={item.caption}
-                        fill
-                        className="object-cover"
-                      />
-                    )}
-                    {item.type === "video" && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                        <Play className="w-4 h-4 text-white" />
-                      </div>
-                    )}
-                  </motion.button>
-                ))}
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   )
 }
