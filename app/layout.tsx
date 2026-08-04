@@ -164,7 +164,7 @@ export default function RootLayout({
         <meta property="business:contact_data:postal_code" content="1708" />
         <meta property="business:contact_data:country_name" content="Argentina" />
         <meta property="business:contact_data:phone_number" content="+54 9 11-7121-0438" />
-        <meta property="business:contact_data:email" content="vuelosdebautismos@gmail.com" />
+        <meta property="business:contact_data:email" content="experienciasaereas1@gmail.com" />
         
         {/* Meta tags adicionales para SEO de experiencias */}
         <meta name="category" content="Experiencias Aéreas, Vuelos Bautismo, Piloto por un Día" />

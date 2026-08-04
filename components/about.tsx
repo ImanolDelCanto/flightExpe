@@ -1,6 +1,6 @@
 "use client"
 
-import { CheckIcon, Cloud, Sun } from "lucide-react"
+import { ArrowRight, Cloud, Sun } from "lucide-react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import Lottie from "lottie-react"
@@ -214,36 +214,26 @@ export function About() {
           </p>
         </div>
         <div className="px-4 md:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-10">Beneficios del Vuelo Bautismo</h2>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-4">
-              <CheckIcon className="w-6 h-6 text-primary" />
-              <div>
-                <h3 className="text-xl font-bold">Experiencia Única</h3>
-                <p className="text-muted-foreground">
-                  Vive una aventura inolvidable y conviértete en piloto por un día.
-                </p>
-              </div>
-            </li>
-            <li className="flex items-center gap-4">
-              <CheckIcon className="w-6 h-6 text-primary" />
-              <div>
-                <h3 className="text-xl font-bold">Aprendizaje Práctico</h3>
-                <p className="text-muted-foreground">
-                  Aprende los conceptos básicos de pilotaje de una manera divertida y segura.
-                </p>
-              </div>
-            </li>
-            <li className="flex items-center gap-4">
-              <CheckIcon className="w-6 h-6 text-primary" />
-              <div>
-                <h3 className="text-xl font-bold">Adrenalina y Emoción</h3>
-                <p className="text-muted-foreground">
-                  Siente la emoción de volar y disfrutar de una vista panorámica única.
-                </p>
-              </div>
-            </li>
-          </ul>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Volá a la Isla Martín García</h2>
+          <p className="text-lg font-semibold text-blue-600 mb-6">
+            La escapada aérea definitiva sobre el Río de la Plata
+          </p>
+          <p className="text-muted-foreground mb-6">
+            Desconectá de la rutina y viví un viaje inolvidable combinando la emoción de volar con la mística de una
+            isla única.
+          </p>
+          <a
+            href="#isla"
+            onClick={(e) => {
+              e.preventDefault()
+              const el = document.getElementById("isla")
+              if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" })
+            }}
+            className="inline-flex items-center gap-2 font-medium text-blue-600 hover:text-blue-700 transition-colors cursor-pointer"
+          >
+            Ver el itinerario completo
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </div>

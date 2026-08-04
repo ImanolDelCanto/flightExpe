@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 
     const result = await resend.emails.send({
       from: 'Consulta Experiencias Aereas <contacto@experienciasaereas.com.ar>',
-      to: ['vuelosdebautismos@gmail.com'],
+      to: ['experienciasaereas1@gmail.com'],
       subject: 'Nuevo mensaje de contacto',
       react: ContactFormEmail({ name, email, message }) as React.ReactElement,
     });

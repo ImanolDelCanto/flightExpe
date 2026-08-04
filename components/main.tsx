@@ -7,6 +7,7 @@ import { Hero } from "./hero"
 
 
 const About = dynamic(() => import("./about").then(mod => mod.About), { ssr: false })
+const Isla = dynamic(() => import("./isla").then(mod => mod.Isla), { ssr: false })
 const Service = dynamic(() => import("./service").then(mod => mod.Service), { ssr: false })
 const Experience = dynamic(() => import("./experience").then(mod => mod.Experience), { ssr: false })
 const Gallery = dynamic(() => import("./gallery").then(mod => mod.Gallery), { ssr: false })
@@ -34,6 +35,10 @@ export default function Main() {
           <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 xl:px-20">
             <About />
           </div>
+        </section>
+
+        <section id="isla" className="w-full py-16 md:py-24 px-4 sm:px-8">
+          <Isla />
         </section>
 
         <section id="service" className="w-full py-16 md:py-24 px-4 sm:px-8">

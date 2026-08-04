@@ -99,20 +99,22 @@ export function Navbar() {
         isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 ">
+      <div className="container mx-auto px-4 py-3 md:py-5">
         <div className="flex items-center justify-between">
           <Link href={"/"} >
             <Image
-              src="/media/icono.webp"
-              width={1000}
-              height={1000}
-              alt="logo"
-              className="h-32 w-auto"
-              sizes="128px"
+              src={isScrolled ? "/media/logo-dark.png" : "/media/logo-light.png"}
+              width={1331}
+              height={1064}
+              alt="Experiencias Aéreas"
+              className="h-16 md:h-20 w-auto"
+              sizes="120px"
+              priority
             />
           </Link>
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            <NavLink href="#isla">Isla Martín García</NavLink>
             <NavLink href="#service">Servicios</NavLink>
             <NavLink href="#experience">Experiencia</NavLink>
             <NavLink href="#contact">Contacto</NavLink>
@@ -147,6 +149,9 @@ export function Navbar() {
               className="md:hidden mt-4"
             >
               <div className="flex flex-col space-y-4 bg-white rounded-lg p-4 shadow-lg">
+                <MobileNavLink href="#isla" onClick={() => setIsMenuOpen(false)}>
+                  Isla Martín García
+                </MobileNavLink>
                 <MobileNavLink href="#service" onClick={() => setIsMenuOpen(false)}>
                   Servicios
                 </MobileNavLink>

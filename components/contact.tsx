@@ -79,8 +79,8 @@ export function Contact() {
             <ContactItem
               icon={<Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />}
               title="Email"
-              link="mailto:vuelosdebautismos@gmail.com"
-              text="vuelosdebautismos@gmail.com"
+              link="mailto:experienciasaereas1@gmail.com"
+              text="experienciasaereas1@gmail.com"
             />
             <ContactItem
               icon={<Instagram className="w-6 h-6 text-blue-600 dark:text-blue-400" />}

@@ -183,7 +183,7 @@ export const localBusinessSchema = {
   "@id": "https://experienciasaereas.com.ar",
   url: "https://experienciasaereas.com.ar",
   telephone: "+54-9-11-7121-0438",
-  email: "vuelosdebautismos@gmail.com",
+  email: "experienciasaereas1@gmail.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "500 Av. Figueroa Alcorta",
